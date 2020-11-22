@@ -10,6 +10,13 @@ class MainComponent extends React.Component {
 		tiPidor : '',
 		listOfTasks: ['1','2'],
 		tempTask: '',
+		selectedTask: -1,
+	}
+
+	changeTask = (taskNumber) => {
+		this.setState({
+			selectedTask: taskNumber
+		});
 	}
 
 	tiPidorChange = (answer) => {
@@ -18,7 +25,7 @@ class MainComponent extends React.Component {
 		})*/
 		let a = this.state.tempTask;
 		let b = this.state.listOfTasks
-		let c = b.push(a);
+		b.push(a);
 		console.log(this.state.listOfTasks);
 		console.log(a);
 		console.log('b=' ,b);
@@ -57,7 +64,9 @@ class MainComponent extends React.Component {
 					inputText={this.state.tempTask} />
 				<PushTaskButton tiPidor={this.tiPidorChange} />
 				<OutputTask taskRender={this.state.listOfTasks} 
-					dlt={this.deleteTask}/>
+					changeTask={this.changeTask} 
+					selectedTask={this.state.selectedTask}
+					dlt={this.deleteTask} />
 			</div>
 			);
 	}
