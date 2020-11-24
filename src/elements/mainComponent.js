@@ -8,9 +8,23 @@ class MainComponent extends React.Component {
 
 	state = {
 		tiPidor : '',
-		listOfTasks: ['1','2'],
+		listOfTasks: [],
 		tempTask: '',
 		selectedTask: -1,
+	}
+
+
+	componentDidMount() {
+		let a = localStorage.getItem("tasks");
+		if (a != null) {
+			this.setState({
+				listOfTasks: a.split("!@##@!")
+			});
+		}
+	}
+
+	componentDidUpdate() {
+		localStorage.setItem("tasks", this.state.listOfTasks.join('!@##@!'));
 	}
 
 	changeTask = (taskNumber) => {
@@ -54,6 +68,9 @@ class MainComponent extends React.Component {
 		newList.splice(ind, 1);
 		this.setState({
 			listOfTasks: newList
+		});
+		this.setState({
+			selectedTask: -1
 		});
 	}
 
