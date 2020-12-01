@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import InputTask from './inputTask.js'
 import PushTaskButton from './pushTaskButton.js'
 import OutputTask from './outputTasks.js'
+import PriorityCheck from './priorityCheck.js'
 
 class MainComponent extends React.Component {
 
 	state = {
 		tiPidor : '',
 		listOfTasks: [],
+		listOfPriority: [],
 		tempTask: '',
+		tempPriority: '0',
 		selectedTask: -1,
 	}
 
@@ -21,10 +24,18 @@ class MainComponent extends React.Component {
 				listOfTasks: a.split("!@##@!")
 			});
 		}
+
+		let b = localStorage.getItem("priority");
+		if (b != null) {
+			this.setState({
+				listOfPriority: b.split("!@##@!")
+			});
+		}
 	}
 
 	componentDidUpdate() {
 		localStorage.setItem("tasks", this.state.listOfTasks.join('!@##@!'));
+		localStorage.setItem("priority", this.state.listOfPriority.join('!@##@!'));
 	}
 
 	changeTask = (taskNumber) => {
@@ -49,6 +60,11 @@ class MainComponent extends React.Component {
 			const list = this.state.listOfTasks.push(a);
 			return list
 		});*/	
+		let aa = this.state.tempPriority;
+		let bb = this.state.listOfPriority
+		bb.push(aa);
+		this.setState({listOfPriority: bb});
+		this.setState({tempPriority: ''});
 	}
 
 	addTask = (formValue) => {
@@ -72,6 +88,19 @@ class MainComponent extends React.Component {
 		this.setState({
 			selectedTask: -1
 		});
+		newList = this.state.listOfPriority.map(item =>{
+			return item
+		});
+		newList.splice(ind, 1);
+		this.setState({
+			listOfPriority: newList
+		});
+	}
+
+	changePriority = (val) => {
+		this.setState({
+			tempPriority: val
+		});
 	}
 
 	render () {
@@ -80,7 +109,9 @@ class MainComponent extends React.Component {
 				<InputTask taskChange={this.addTask} 
 					inputText={this.state.tempTask} />
 				<PushTaskButton tiPidor={this.tiPidorChange} />
+				<PriorityCheck changePriority={this.changePriority}/>
 				<OutputTask taskRender={this.state.listOfTasks} 
+					priorityRender={this.state.listOfPriority}
 					changeTask={this.changeTask} 
 					selectedTask={this.state.selectedTask}
 					dlt={this.deleteTask} />
