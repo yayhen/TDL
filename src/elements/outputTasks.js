@@ -2,24 +2,44 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ClearButton from './clearButton.js'
 	
-
+	const divStyle = {
+		width: '500px',
+		marginLeft: 'auto',
+		marginRight: 'auto'
+	}
 	
 	const noStyle = {
 		//display: 'inline',
+		margin: '10px',
+		borderRadius: '10%',
+		border: '1px solid',
+		fontSize: '20pt'
 	}
 
 	const greenStyle = {
-		backgroundColor: 'green',
+		backgroundColor: '#FFCC00',
+		margin: '10px',
+		borderRadius: '10%',
+		border: '1px solid',
+		fontSize: '20pt'
 		//display: 'inline',
 	}
 
 	const yellowStyle = {
-		backgroundColor: 'yellow',
+		backgroundColor: '#FF9900',
+		margin: '10px',
+		borderRadius: '10%',
+		border: '1px solid',
+		fontSize: '20pt'
 		//display: 'inline',
 	}
 
 	const redStyle = {
-		backgroundColor: 'red',
+		backgroundColor: '#FF6600',
+		margin: '10px',
+		borderRadius: '10%',
+		border: '1px solid',
+		fontSize: '20pt'
 		//display: 'inline',
 	}
 
@@ -67,7 +87,7 @@ class OutputTask extends React.Component {
 			}
 		})
 		return (
-			<div>
+			<div style={divStyle}>
 				{arrTsk}
 			</div>
 			);

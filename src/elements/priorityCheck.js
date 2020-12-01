@@ -14,7 +14,7 @@ class PriorityCheck extends React.Component {
 	render () {
 		return (
 			<div onChange={this.priorChange}>
-				<input type="radio" name="radioPrior" value="low" />low priority&#160;
+				<input type="radio" name="radioPrior" value="low" checked />low priority&#160;
 				<input type="radio" name="radioPrior" value="normal" />normal priority&#160;
 				<input type="radio" name="radioPrior" value="high" />high priority<br /><br />
 			</div>

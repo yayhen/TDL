@@ -12,7 +12,7 @@ class MainComponent extends React.Component {
 		listOfTasks: [],
 		listOfPriority: [],
 		tempTask: '',
-		tempPriority: '0',
+		tempPriority: 'low',
 		selectedTask: -1,
 	}
 
@@ -64,7 +64,7 @@ class MainComponent extends React.Component {
 		let bb = this.state.listOfPriority
 		bb.push(aa);
 		this.setState({listOfPriority: bb});
-		this.setState({tempPriority: ''});
+		this.setState({tempPriority: 'low'});
 	}
 
 	addTask = (formValue) => {
